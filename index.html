@@ -7,6 +7,7 @@
     body {
       margin: 0;
       overflow: hidden;
+      transition: background-color 0.5s ease; /* Dodano efekt przejścia */
     }
 
     #background {
@@ -57,7 +58,7 @@
 
     // Create snowflakes
     const snowflakeContainer = document.getElementById('snowflake-container');
-    const numSnowflakes = 200;
+    const numSnowflakes = 2000;
 
     for (let i = 0; i < numSnowflakes; i++) {
       createSnowflake();
@@ -76,6 +77,23 @@
         snowflake.remove();
         createSnowflake();
       }, 3000); // Recreate snowflake after 3 seconds
+    }
+
+    // Change background color every 0.09 seconds
+    setInterval(changeBackgroundColor, 90);
+
+    function changeBackgroundColor() {
+      const randomColor = getRandomColor();
+      document.body.style.backgroundColor = randomColor;
+    }
+
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
     }
   </script>
 </body>
